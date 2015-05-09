@@ -6,6 +6,11 @@ package makemkv
  */
 trait ProgressListener {
 
-  def progressUpdated(current: Int, total: Int, max: Int)
+  def onStart: Unit
+  
+  def onMessage(message: String): Unit
+  
+  def onProgressUpdated(current: Int, total: Int, max: Int)
 
+  def onFinish: Unit
 }

@@ -11,8 +11,8 @@ class MakeMkvConInfoImpl(override val makeMkvConCommand: MakeMkvConCommand) exte
   val discInfoRegexp = """CINFO:2,[0-9]+,"(.+?)"""".r
   val trackInfoRegexp = """TINFO:([0-9]+),([0-9]+),[0-9]+,"(.+?)"""".r
 
-  override def execute(progressListener: ProgressListener): DiscInfo = {
-    val infoLines = produceOutput(progressListener, Seq("info", "disc:0"))
+  override def info(progressListener: ProgressListener): DiscInfo = {
+    val infoLines = produceOutput(progressListener, "info", "disc:0")
     val titleIndicies = infoLines.flatMap {
       case TrackInfoLine(id) => Some(id)
       case _ => None
@@ -33,7 +33,8 @@ class MakeMkvConInfoImpl(override val makeMkvConCommand: MakeMkvConCommand) exte
         size <- SizeInfoLine.from(trackInfos)
         titleId <- TitleIdInfoLine.from(trackInfos)
         segmentCount <- SegmentCountInfoLine.from(trackInfos)
-      } yield TitleInfo(titleId, chapterCount, duration, size, segmentCount)
+        target <- TargetInfoLine.from(trackInfos)
+      } yield TitleInfo(titleIndex, titleId, chapterCount, duration, size, segmentCount, target)
     }
     DiscInfo(name.get, titles)
   }
@@ -49,6 +50,7 @@ class MakeMkvConInfoImpl(override val makeMkvConCommand: MakeMkvConCommand) exte
           case 11 => Some(SizeInfoLine(id, value.toLong))
           case 24 => Some(TitleIdInfoLine(id, value.toInt))
           case 25 => Some(SegmentCountInfoLine(id, value.toInt))
+          case 27 => Some(TargetInfoLine(id, value))
           case _ => None
         }
       }
@@ -99,6 +101,13 @@ case class SegmentCountInfoLine(override val id: Int, override val value: Int) e
 object SegmentCountInfoLine {
   def from(trackInfoLines: Seq[InfoLine]): Option[Int] = trackInfoLines.flatMap {
     case SegmentCountInfoLine(_, value) => Some(value)
+    case _ => None
+  }.headOption
+}
+case class TargetInfoLine(override val id: Int, override val value: String) extends TrackInfoLine[String](id, value)
+object TargetInfoLine {
+  def from(trackInfoLines: Seq[InfoLine]): Option[String] = trackInfoLines.flatMap {
+    case TargetInfoLine(_, value) => Some(value)
     case _ => None
   }.headOption
 }

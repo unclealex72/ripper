@@ -11,11 +11,13 @@ import duration.Implicits._
  * A class to model a title on a DVD
  * Created by alex on 04/05/15.
  */
-class Title(_id: String, _length: Period, _season: Option[Int] = None, _episode: Option[Int] = None) {
+class Title(val id: Int, _trackNumber: Int, _length: Period, val target: String, _season: Option[Int] = None, _episode: Option[Int] = None) extends Ordered[Title] {
 
 
-  val id = new ReadOnlyStringProperty(this, "id", _id)
+  val trackNumber = new ReadOnlyStringProperty(this, "trackNumber", _trackNumber.toString)
   val length = new ReadOnlyStringProperty(this, "length", _length.format)
   val season = new ObjectProperty(this, "season", _season)
   val episode = new ObjectProperty(this, "episode", _episode)
+
+  override def compare(that: Title): Int = id - that.id
 }
