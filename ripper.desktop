@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=TV Ripper
+Comment=Rip TV DVDs.
+Exec={location}/git/ripper/activator run
+Path={location}/git/ripper
+Icon=/usr/share/icons/Humanity/devices/128/media-optical.svg
+Terminal=true
+Type=Application
+Categories=Utility;Application;Development;
