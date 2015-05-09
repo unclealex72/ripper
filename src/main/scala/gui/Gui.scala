@@ -224,7 +224,7 @@ class Gui(val makeMkvConInfo: MakeMkvConInfo, val makeMkvConvMkv: MakeMkvConMkv)
         padding = Insets(10, 10, 10, 10)
       }
     }
-    stage.initModality(Modality.WINDOW_MODAL)
+    stage.initModality(Modality.APPLICATION_MODAL)
     stage.initOwner(stage.scene.window.get)
     stage.show
     val progressListener = new ProgressListener {
