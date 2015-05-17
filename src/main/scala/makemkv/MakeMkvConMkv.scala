@@ -1,11 +1,13 @@
 package makemkv
 
-import java.io.File
+import java.nio.file.Path
 
 /**
  * Created by alex on 07/05/15.
  */
-trait MakeMkvConMkv {
+trait MakeMkvConMkv[RIPTYPE <: RipType] {
 
-  def rip(titleId: Int, targetDirectory: File, targetFilename: String, name: String, season: Int, episode: Int, progressListener: ProgressListener): Unit
+  def rip(dvdSource: DvdSource, ripTarget: RIPTYPE, targetDirectory: Path, progressListener: ProgressListener): Unit
+
+  def script(dvdSource: ISO, ripTarget: RIPTYPE, targetDirectory: Path): Seq[String]
 }

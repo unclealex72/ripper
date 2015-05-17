@@ -10,7 +10,7 @@ abstract class MakeMkvConParser[A](val makeMkvConCommand: MakeMkvConCommand) ext
   val progressRegexp = """PRGV:([0-9]+),([0-9]+),([0-9]+)""".r
   val messageRegexp = """MSG:[0-9]+,[0-9]+,[0-9]+,"(.+?)",.+""".r
 
-  def produceOutput(progressListener: ProgressListener, arguments: String*): Seq[A] = {
+  def produceOutput(progressListener: ProgressListener, arguments: Seq[String]): Seq[A] = {
     progressListener.onStart
     val result = makeMkvConCommand.execute(arguments).foldLeft(Seq.empty[A]){ (seq, str) =>
       str match {

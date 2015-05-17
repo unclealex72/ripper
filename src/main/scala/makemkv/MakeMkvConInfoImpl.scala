@@ -11,8 +11,8 @@ class MakeMkvConInfoImpl(override val makeMkvConCommand: MakeMkvConCommand) exte
   val discInfoRegexp = """CINFO:2,[0-9]+,"(.+?)"""".r
   val trackInfoRegexp = """TINFO:([0-9]+),([0-9]+),[0-9]+,"(.+?)"""".r
 
-  override def info(progressListener: ProgressListener): DiscInfo = {
-    val infoLines = produceOutput(progressListener, "info", "disc:0")
+  override def info(dvdSource: DvdSource, progressListener: ProgressListener): DiscInfo = {
+    val infoLines = produceOutput(progressListener, Seq("info") ++ dvdSource.toCommandLineArguments)
     val titleIndicies = infoLines.flatMap {
       case TrackInfoLine(id) => Some(id)
       case _ => None

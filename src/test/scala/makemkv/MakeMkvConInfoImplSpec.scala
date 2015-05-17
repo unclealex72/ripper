@@ -16,11 +16,11 @@ class MakeMkvConInfoImplSpec extends Specification with Mockito {
     "correctly list the titles on the DVD" in {
       val makeMkvConCommand = mock[MakeMkvConCommand]
       makeMkvConCommand.execute(Seq("info", "disc:0")) returns {
-        Source.fromInputStream(classOf[MakeMkvConInfoImplSpec].getClassLoader.getResourceAsStream("info.txt")).getLines().toStream
+        Source.fromInputStream(classOf[MakeMkvConInfoImplSpec].getClassLoader.getResourceAsStream("makemkv/info.txt")).getLines().toStream
       }
       val progressListener = mock[ProgressListener]
       val makeMkvConInfoImpl = new MakeMkvConInfoImpl(makeMkvConCommand)
-      val discInfo = makeMkvConInfoImpl.info(progressListener)
+      val discInfo = makeMkvConInfoImpl.info(DVD, progressListener)
       discInfo.name must be equalTo("Tales from the Darkside S1 D1")
       discInfo.titles must contain(exactly(
         TitleInfo(0, 1, 43, "02:57:33".toPeriod, 7248056320l, 8, "title00.mkv"),

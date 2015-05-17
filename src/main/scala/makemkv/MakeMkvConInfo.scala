@@ -7,7 +7,7 @@ import org.joda.time.Period
  */
 trait MakeMkvConInfo {
 
-  def info(progressListener: ProgressListener): DiscInfo
+  def info(dvdSource: DvdSource, progressListener: ProgressListener): DiscInfo
 }
 
 case class DiscInfo(name: String, titles: Seq[TitleInfo])

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Name=Film Ripper
+Comment=Rip Film DVDs.
+Exec=RIPPER/activator "run film"
+Path=RIPPER
+Icon=RIPPER/icons/film-ripper.svg
+Terminal=true
+Type=Application
+Categories=Utility;Application;Development;
+StartupWMClass=gui.FilmRipGuiRunner
