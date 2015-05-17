@@ -33,7 +33,7 @@ trait ModalProvider extends JFXApp {
     val modalPadding = Insets(10, 10, 10, 10)
     modalStage.scene = new Scene {
       content = new VBox {
-        children = List(progressBarCurrent, progressBarTotal).map(Anchor.wide(_))
+        children = List(progressBarCurrent, progressBarTotal)
         spacing = 10
         padding = modalPadding
       }
