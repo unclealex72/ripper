@@ -25,9 +25,13 @@ trait ConvertGui[TITLE <: Title, RIPTYPE <: RipType] extends JFXApp with DvdLoad
   val currentIso = new ObjectProperty[Option[Path]](this, "currentIso", None)
   val targetDirectory = new ObjectProperty[Option[Path]](this, "targetDirectory", None)
 
-  lazy val remaingIsosLabel = new Label
+  lazy val remainingIsosLabel = new Label {
+    minWidth = 500
+  }
 
-  lazy val directoryLabel = new Label
+  lazy val directoryLabel = new Label {
+    minWidth = 500
+  }
 
   lazy val directoryButton = new Button("Scan Directory") {
     onAction = handle {
@@ -76,7 +80,7 @@ trait ConvertGui[TITLE <: Title, RIPTYPE <: RipType] extends JFXApp with DvdLoad
     currentIso.value = isoFiles.headOption
     val size = buf.length
     val plural = if (size == 1) "" else "s"
-    remaingIsosLabel.text = s"$size iso file$plural remaining"
+    remainingIsosLabel.text = s"$size iso file$plural remaining"
   }
 
   currentIso.onChange { (_, _, optionalCurrentIso) =>
