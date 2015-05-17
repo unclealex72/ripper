@@ -1,6 +1,6 @@
 package gui
 
-import javafx.{concurrent => jfxc, event => jfxe}
+import javafx.{concurrent => jfxc}
 
 import makemkv.ProgressListener
 
@@ -8,8 +8,6 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 import scalafx.Includes._
 import scalafx.application.JFXApp
-import scalafx.beans.property.StringProperty
-import scalafx.concurrent.Task
 import scalafx.geometry.Insets
 import scalafx.scene.Scene
 import scalafx.scene.layout.VBox
@@ -21,23 +19,30 @@ import scalafx.stage.{Modality, Stage}
 trait ModalProvider extends JFXApp {
 
   def modal(action: ProgressListener => (String => Unit) => Unit): Future[Unit] = {
-    val modalStage = new Stage()
+    val modalStage = new Stage() {
+      width = 500
+    }
+
     val progressBarCurrent = new ProgressTextBar {
       progress = 0.0
-      minWidth = 300.0
     }
     val progressBarTotal = new ProgressTextBar {
       progress = 0.0
-      minWidth = 300.0
     }
 
+    val modalPadding = Insets(10, 10, 10, 10)
     modalStage.scene = new Scene {
       content = new VBox {
-        children = List(progressBarCurrent, progressBarTotal)
+        children = List(progressBarCurrent, progressBarTotal).map(Anchor.wide(_))
         spacing = 10
-        padding = Insets(10, 10, 10, 10)
+        padding = modalPadding
       }
     }
+
+    Seq(progressBarCurrent, progressBarTotal).foreach { progressBar =>
+      progressBar.prefWidth <== modalStage.scene.width - (modalPadding.left + modalPadding.right)
+    }
+
     modalStage.initModality(Modality.APPLICATION_MODAL)
     modalStage.initOwner(stage)
     modalStage.show
