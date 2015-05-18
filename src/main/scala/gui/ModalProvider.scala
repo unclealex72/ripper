@@ -2,6 +2,7 @@ package gui
 
 import javafx.{concurrent => jfxc}
 
+import com.typesafe.scalalogging.StrictLogging
 import makemkv.ProgressListener
 
 import scala.concurrent.ExecutionContext.Implicits.global
@@ -16,7 +17,7 @@ import scalafx.stage.{Modality, Stage}
 /**
  * Created by alex on 13/05/15.
  */
-trait ModalProvider extends JFXApp {
+trait ModalProvider extends JFXApp with StrictLogging {
 
   def modal(action: ProgressListener => (String => Unit) => Unit): Future[Unit] = {
     val modalStage = new Stage() {
@@ -59,14 +60,34 @@ trait ModalProvider extends JFXApp {
     }
     val task = new jfxc.Task[Unit] {
       def call = {
-        val titleUpdater = (text: String) => updateTitle(text)
-        action(progressListener)(titleUpdater)
+        try {
+          val titleUpdater = (text: String) => updateTitle(text)
+          action(progressListener)(titleUpdater)
+        }
+        catch {
+          case ex: Throwable => {
+            logger.error("The background task failed.", ex)
+            throw ex
+          }
+        }
       }
     }
+
+    modalStage.onCloseRequest = handle {
+      task.cancel(true)
+    }
+
     modalStage.title <== task.title
     task.onSucceeded = handle {
       modalStage.close
     }
+    task.onFailed = handle {
+      modalStage.close
+    }
+    task.onCancelled = handle {
+      modalStage.close
+    }
+
     Future {
       task.run()
     }
