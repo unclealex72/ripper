@@ -9,9 +9,4 @@ class AppRunner(val jfxAppFactory: () => JFXApp) extends AppHelper {
     JFXApp.ACTIVE_APP = app
     jfxca.Application.launch(this.getClass)
   }
-
-  override def stop = {
-    super.stop
-    System.exit(0)
-  }
 }
