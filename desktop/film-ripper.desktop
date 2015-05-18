@@ -2,7 +2,7 @@
 Version=1.0
 Name=Film Ripper
 Comment=Rip Film DVDs.
-Exec=RIPPER/activator "run film"
+Exec=RIPPER/run.sh "run film"
 Path=RIPPER
 Icon=RIPPER/icons/film-ripper.svg
 Terminal=true

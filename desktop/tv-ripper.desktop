@@ -2,7 +2,7 @@
 Version=1.0
 Name=TV Ripper
 Comment=Rip TV DVDs.
-Exec=RIPPER/activator "run tv"
+Exec=RIPPER/run.sh "run tv"
 Path=RIPPER
 Icon=RIPPER/icons/tv-ripper.svg
 Terminal=true
