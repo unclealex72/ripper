@@ -1,6 +1,6 @@
 package gui
 
-import java.net.URL
+import java.net.{URLEncoder, URL}
 import java.time.Year
 
 import makemkv.Film
@@ -28,7 +28,8 @@ class FilmRipGui extends AbstractGui("Film DVD Ripper") with FilmGui with RipGui
       "query" -> text,
       "include_adult" -> true) ++
       year.map(year => "year" -> year)
-    val url = "http://api.themoviedb.org/3/search/movie?" + parameters.map(p => s"${p._1}=${p._2}").mkString("&")
+    val url = "http://api.themoviedb.org/3/search/movie?" +
+      parameters.map(p => s"${p._1}=${URLEncoder.encode(p._2.toString)}").mkString("&")
     val response = Source.fromURL(new URL(url)).mkString
     response.decodeValidation[Response].toValidationNel match {
       case Success(response) => response.searchResults

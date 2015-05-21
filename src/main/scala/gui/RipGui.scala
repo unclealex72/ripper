@@ -2,6 +2,7 @@ package gui
 
 import java.nio.file.{Path, Paths}
 
+import gui.AutoComplete._
 import makemkv.{DVD, MakeMkvConMkv, ProgressListener, RipType}
 import suggestions.SuggestionProvider
 
@@ -12,10 +13,8 @@ import scalafx.Includes._
 import scalafx.application.JFXApp
 import scalafx.geometry.Insets
 import scalafx.scene.control.{Button, Label, TextField}
-import scalafx.scene.layout.{GridPane, HBox, Pane, VBox}
+import scalafx.scene.layout.{GridPane, Pane}
 import scalafx.stage.{DirectoryChooser, Stage}
-import gui.AutoComplete._
-import scala.sys.process._
 /**
  * Created by alex on 14/05/15.
  */
@@ -55,7 +54,7 @@ trait RipGui[TITLE <: Title, RIPTYPE <: RipType] extends JFXApp with DvdLoader[T
   lazy val lookupButton = new Button("Lookup") {
     onAction = handle {
       lookupUrl(nameField.text.value).foreach { url =>
-        Seq("google-chrome", url.toString).!
+        Future(Seq("google-chrome", url.toString).!)
       }
     }
   }
