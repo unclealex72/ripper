@@ -1,7 +1,8 @@
 package gui
 
-import file.{ScriptingServiceImpl, ScriptingService}
-import makemkv._
+import commands.TvEpisode
+import file.{ScriptingService, ScriptingServiceImpl}
+import commands.makemkv._
 
 import scalafx.Includes._
 import scalafx.geometry.Insets
@@ -14,7 +15,7 @@ import scalafx.util.StringConverter
 /**
  * Created by alex on 13/05/15.
  */
-trait TvGui extends TitlesModel[TvTitle] {
+trait TvDvdGui extends TitlesModel[TvTitle] {
 
   self: MakeMkvConCommandProvider =>
 
@@ -87,13 +88,13 @@ trait TvGui extends TitlesModel[TvTitle] {
         center = titlesTable
         bottom = new Button("Auto-populate") {
           onAction = handle {
-            autoPopulate
+            autoPopulate()
           }
         }
         BorderPane.setMargin(bottom.value, Insets(10, 0, 0, 0))
       }
 
-      def autoPopulate: Unit = {
+      def autoPopulate(): Unit = {
         val currentlySelectedIndicies = selectedIndicies
         if (currentlySelectedIndicies.nonEmpty) {
           val titles = titlesTable.items.value
@@ -104,7 +105,7 @@ trait TvGui extends TitlesModel[TvTitle] {
           } yield (season, episode)
           optionalFirstSeasonAndEpisode match {
             case Some((firstSeason, firstEpisode)) => {
-              0 to titles.length - 1 foreach { idx =>
+              0 until titles.length foreach { idx =>
                 val title = titles(idx)
                 val posn = currentlySelectedIndicies.indexOf(idx)
                 if (posn < 0) {

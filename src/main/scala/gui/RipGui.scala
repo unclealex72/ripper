@@ -2,9 +2,10 @@ package gui
 
 import java.nio.file.{Path, Paths}
 
+import commands.RipType
 import gui.AutoComplete._
-import makemkv.{DVD, MakeMkvConMkv, ProgressListener, RipType}
-import suggestions.SuggestionProvider
+import commands.makemkv.{DVD, MakeMkvConMkv, ProgressListener}
+import suggestions.{LookupProvider, SuggestionProvider}
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future

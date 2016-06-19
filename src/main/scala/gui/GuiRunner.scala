@@ -6,9 +6,12 @@ object GuiRunner extends App {
 
   val modes: Map[String, AppRunner] = Map(
     "tv" -> new TvRipGuiRunner,
+    "tvconcat" -> new TvConcatGuiRunner,
     "tvconv" -> new TvConvertGuiRunner,
     "film" -> new FilmRipGuiRunner,
-    "filmconv" -> new FilmConvertGuiRunner)
+    "filmconv" -> new FilmConvertGuiRunner,
+    "filmconcat" -> new FilmConcatGuiRunner
+    )
 
   val optMode = for {
     arg <- args.headOption.map(_.toLowerCase)
@@ -26,5 +29,7 @@ object GuiRunner extends App {
 
 class TvRipGuiRunner extends AppRunner(() => new TvRipGui)
 class TvConvertGuiRunner extends AppRunner(() => new TvConvertGui)
+class TvConcatGuiRunner extends AppRunner(() => new TvConcatGui)
 class FilmRipGuiRunner extends AppRunner(() => new FilmRipGui)
 class FilmConvertGuiRunner extends AppRunner(() => new FilmConvertGui)
+class FilmConcatGuiRunner extends AppRunner(() => new FilmConcatGui)

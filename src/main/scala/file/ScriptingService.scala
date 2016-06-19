@@ -2,7 +2,8 @@ package file
 
 import java.nio.file.Path
 
-import makemkv.{RipType, ISO, TvEpisode}
+import commands.RipType
+import commands.makemkv.ISO
 
 import scala.collection.SortedSet
 

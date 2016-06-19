@@ -1,4 +1,4 @@
-package makemkv
+package commands
 
 sealed trait RipType
 

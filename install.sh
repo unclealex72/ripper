@@ -9,5 +9,7 @@ done
 DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
 for TYPE in tv film; do
-  sed "s!RIPPER!$DIR!g" desktop/$TYPE-ripper.desktop > $HOME/.local/share/applications/$TYPE-ripper.desktop
+  for ACTION in ripper concatenator; do
+    sed "s!RIPPER!$DIR!g" desktop/$TYPE-$ACTION.desktop > $HOME/.local/share/applications/$TYPE-$ACTION.desktop
+   done
 done

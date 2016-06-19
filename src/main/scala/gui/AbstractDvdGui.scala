@@ -1,6 +1,6 @@
 package gui
 
-import makemkv._
+import commands.makemkv._
 
 import scalafx.application.JFXApp
 import scalafx.application.JFXApp.PrimaryStage
@@ -12,7 +12,7 @@ import scalafx.Includes._
 /**
  * Created by alex on 12/05/15.
  */
-abstract class AbstractGui(val windowTitle: String) extends JFXApp with MakeMkvConCommandProvider {
+abstract class AbstractDvdGui(val windowTitle: String) extends JFXApp with MakeMkvConCommandProvider {
 
   val topPane: Pane
 

@@ -2,9 +2,10 @@ package gui
 
 import java.nio.file.Path
 
+import commands.RipType
 import file.Implicits._
 import file.ScriptingService
-import makemkv._
+import commands.makemkv._
 
 import scalafx.Includes._
 import scalafx.application.JFXApp

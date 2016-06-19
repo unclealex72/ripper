@@ -1,7 +1,8 @@
 package gui
 
-import file.{ScriptingServiceImpl, ScriptingService}
-import makemkv._
+import commands.Film
+import file.{ScriptingService, ScriptingServiceImpl}
+import commands.makemkv._
 
 import scalafx.Includes._
 import scalafx.geometry.Insets
@@ -12,7 +13,7 @@ import scalafx.scene.layout.{BorderPane, Pane}
 /**
  * Created by alex on 13/05/15.
  */
-trait FilmGui extends TitlesModel[FilmTitle] {
+trait FilmDvdGui extends TitlesModel[FilmTitle] {
 
   self: MakeMkvConCommandProvider =>
 

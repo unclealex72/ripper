@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Name=TV Concatenator
+Comment=Concatenate TV mp4s.
+Exec=RIPPER/run.sh "run tvconcat"
+Path=RIPPER
+Icon=RIPPER/icons/tv-concat.svg
+Terminal=true
+Type=Application
+Categories=Utility;Application;Development;
+StartupWMClass=gui.TvConcatGuiRunner

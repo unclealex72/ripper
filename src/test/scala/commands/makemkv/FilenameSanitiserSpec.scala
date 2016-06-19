@@ -1,5 +1,6 @@
-package makemkv
+package commands.makemkv
 
+import commands.FilenameSanitiser
 import org.specs2.mutable.Specification
 
 /**

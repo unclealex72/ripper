@@ -1,5 +1,6 @@
-package makemkv
+package commands.makemkv
 
+import commands.TvEpisode
 import org.specs2.mock.Mockito
 import org.specs2.mutable.Specification
 import file.Implicits._

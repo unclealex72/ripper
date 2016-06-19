@@ -3,7 +3,7 @@ package gui
 import javafx.{concurrent => jfxc}
 
 import com.typesafe.scalalogging.StrictLogging
-import makemkv.ProgressListener
+import commands.makemkv.ProgressListener
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
@@ -50,9 +50,9 @@ trait ModalProvider extends JFXApp with StrictLogging {
 
     val progressListener = new ProgressListener {
       override def onStart: Unit = {}
-      override def onProgressUpdated(current: Int, total: Int, max: Int): Unit = {
-        progressBarCurrent.progress = current.asInstanceOf[Double] / max
-        progressBarTotal.progress = total.asInstanceOf[Double] / max
+      override def onProgressUpdated(current: Double, total: Double, max: Double): Unit = {
+        progressBarCurrent.progress = current / max
+        progressBarTotal.progress = total / max
       }
       override def onFinish: Unit = {
       }

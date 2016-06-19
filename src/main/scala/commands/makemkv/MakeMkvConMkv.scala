@@ -1,6 +1,8 @@
-package makemkv
+package commands.makemkv
 
 import java.nio.file.Path
+
+import commands.RipType
 
 /**
  * Created by alex on 07/05/15.

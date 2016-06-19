@@ -1,4 +1,4 @@
-package makemkv
+package commands.makemkv
 
 import java.nio.file.Path
 import file.Implicits._

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Name=Film Concatenator
+Comment=Concatenate Film DVDs.
+Exec=RIPPER/run.sh "run filmconcat"
+Path=RIPPER
+Icon=RIPPER/icons/film-concat.svg
+Terminal=true
+Type=Application
+Categories=Utility;Application;Development;
+StartupWMClass=gui.FilmConcatGuiRunner

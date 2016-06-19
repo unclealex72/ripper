@@ -1,9 +1,11 @@
 package file
 
 import java.io.File
-import java.nio.file.{Paths, Path}
+import java.nio.file.{Path, Paths}
+
+import commands.TvEpisode
 import file.Implicits._
-import makemkv.{TvEpisode, MakeMkvConMkv}
+import commands.makemkv.MakeMkvConMkv
 import org.specs2.mock.Mockito
 import org.specs2.mutable.Specification
 

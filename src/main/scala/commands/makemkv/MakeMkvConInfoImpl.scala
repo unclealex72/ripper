@@ -1,4 +1,4 @@
-package makemkv
+package commands.makemkv
 
 import duration.Implicits._
 import org.joda.time.Period

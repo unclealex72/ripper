@@ -1,7 +1,8 @@
-package makemkv
+package commands.makemkv
 
 import java.nio.file.Path
 
+import commands.{FilenameSanitiser, Film}
 import file.Implicits._
 
 /**

@@ -2,8 +2,9 @@ package file
 
 import java.nio.file.Path
 
+import commands.RipType
 import file.Implicits._
-import makemkv._
+import commands.makemkv._
 
 import scala.collection.SortedSet
 

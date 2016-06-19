@@ -1,4 +1,4 @@
-package makemkv
+package commands.makemkv
 
 import org.joda.time.Period
 

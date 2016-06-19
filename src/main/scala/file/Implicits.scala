@@ -45,6 +45,10 @@ object Implicits {
       Files.isRegularFile(path)
     }
 
+    def delete(): Unit = {
+      Files.deleteIfExists(path)
+    }
+
     def children: Seq[Path] = {
       Option(path.toFile.listFiles).toSeq.flatten.map(_.toPath)
     }

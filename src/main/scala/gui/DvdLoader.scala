@@ -1,6 +1,6 @@
 package gui
 
-import makemkv.{DvdSource, MakeMkvConInfo, TitleInfo}
+import commands.makemkv.{DvdSource, MakeMkvConInfo, TitleInfo}
 
 /**
  * Created by alex on 13/05/15.

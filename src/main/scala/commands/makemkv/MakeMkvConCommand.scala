@@ -1,4 +1,4 @@
-package makemkv
+package commands.makemkv
 
 /**
  * A trait that, given a list of command line arguments will produce a stream of strings. This is used to

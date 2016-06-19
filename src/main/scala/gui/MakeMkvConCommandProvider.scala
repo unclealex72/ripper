@@ -1,6 +1,6 @@
 package gui
 
-import makemkv.{MakeMkvConCommandImpl, MakeMkvConCommand}
+import commands.makemkv.{MakeMkvConCommandImpl, MakeMkvConCommand}
 
 /**
  * Created by alex on 14/05/15.

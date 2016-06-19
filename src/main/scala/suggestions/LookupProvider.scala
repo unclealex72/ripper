@@ -1,4 +1,4 @@
-package gui
+package suggestions
 
 import java.net.URL
 
