@@ -27,7 +27,7 @@ abstract class AbstractMp4Box[RIPTYPE <: RipType] extends Mp4Box[RIPTYPE] with T
     target.getParent.mkdirs
     target.delete()
     val cmd =
-      Seq("MP4Box") ++
+      Seq("MP4Box", "-tmp", targetDirectory.toString) ++
         sourceFiles.flatMap(sourceFile => Seq("-cat", sourceFile.toString)) :+
         target.toString
     logger.info(s"Executing ${cmd.mkString(" ")}")
